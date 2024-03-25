@@ -8,7 +8,6 @@ import argparse
 from classreader import ClassReader
 
 pp = pprint.PrettyPrinter()
-file_path = './CitizensPlugin.class'
 
 def find_methods_by_name(clazz: dict, name: str):
     return [method for method in clazz['methods'] if clazz['constant_pool'][method['name_index'] - 1]['bytes'].decode('utf-8') == name]
@@ -353,7 +352,7 @@ args = parser.parse_args()
 input_file = args.input_file
 debug_mode = args.debug
 
-clazz = parse_class('./Main.class')
+clazz = parse_class(input_file)
 result = decompile_class(clazz)
 
 if debug_mode:
